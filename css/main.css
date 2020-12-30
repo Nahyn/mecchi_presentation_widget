@@ -16,6 +16,19 @@
 	}
 }
 
+body.full-width-off #wrapper-content,
+body.full-width-off #splash-wrapper,
+body.full-width-off #header {
+	max-width: 1260px;
+	width: 1260px;
+}
+
+.container {
+	padding: 0;
+	max-width: 1260px;
+	width: 1260px;
+}
+
 #mecchi_computer_widget {
 	position: relative;
 	background: rgb(240, 240, 240);
@@ -23,12 +36,19 @@
 	overflow: hidden;
 	animation-name: appear;
 	animation-duration: 0s;
-	font-family: monospace;
 	color: rgb(200, 220, 200);
 }
 
 #mecchi_computer_widget p {
+	font-family: 'Space Mono', monospace !important;
+	font-size: 0.8em !important;
+	line-height: 1.4em !important;
 	margin: 0;
+}
+
+#mecchi_computer_widget .description_paragraph {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 .scene_container {
@@ -67,11 +87,6 @@
 	
 	pointer-events: none;
 }
-
-
-/* ============================================================================================= */
-/* == Choice scene ============================================================================= */
-/* ============================================================================================= */
 
 @keyframes disk_selected {
 	0% {
@@ -169,11 +184,6 @@
 	opacity: 0.2;
 }
 
-
-/* ============================================================================================= */
-/* == Transition scene ========================================================================= */
-/* ============================================================================================= */
-
 @keyframes disk_appear {
 	0% {
 		opacity: 0;
@@ -229,11 +239,6 @@
 	animation-name: disk_appear;
 	animation-duration: 0.8s;
 }
-
-
-/* ============================================================================================= */
-/* == Computer scene =========================================================================== */
-/* ============================================================================================= */
 
 @keyframes computerScreen_appearing {
 	0% {
@@ -291,49 +296,49 @@
 }
 
 #computer_menu {
-    position: relative;
-    flex: 0 0 auto;
-    display: flex;
-    font-size: 2em;
-    margin-bottom: 0.5em;
-    justify-content: flex-start;
+	position: relative;
+	flex: 0 0 auto;
+	display: flex;
+	font-size: 2em;
+	margin-bottom: 0.5em;
+	justify-content: flex-start;
 }
 
 .computerScreen_tab_container {
-    padding: 0 0.5em;
-    cursor: pointer;
-    margin-right: 0.2em;
+	padding: 0 0.5em;
+	cursor: pointer;
+	margin-right: 0.2em;
 }
 
 .computerScreen_tab_container.computerScreen_tab_active {
-    border-bottom: none;
+	border-bottom: none;
 	pointer-events: none;
 
-    color: rgb(200, 220, 200);
-    background-color: transparent;
+	color: rgb(200, 220, 200);
+	background-color: transparent;
 }
 
 .computerScreen_tab_container:not(.computerScreen_tab_active) {
-    color: rgb(60, 60, 60);
-    background-color: rgb(200, 220, 200);
+	color: rgb(60, 60, 60);
+	background-color: rgb(200, 220, 200);
 }
 
 .computerScreen_tab_container:not(.computerScreen_tab_active):hover {
-    background-color: rgb(220, 240, 220);
+	background-color: rgb(220, 240, 220);
 }
 
 .computerScreen_tab_container.computerScreen_tab_exit {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
 }
 
 .computerScreen_container {
-    flex: 1 1 1em;
-    display: flex;
-    position: relative;
-    animation-duration: 0.25s;
+	flex: 1 1 1em;
+	display: flex;
+	position: relative;
+	animation-duration: 0.25s;
 }
 
 .computerScreen_container.computerScreen_appearing {
@@ -360,8 +365,6 @@
 	justify-content: center;
 	overflow: hidden;
 }
-
-/* == Description page ========================================================================= */
 
 .illustrationContainer {
 	flex: 0 0 33%;
@@ -410,21 +413,19 @@
 }
 
 .illustrationContainer > * {
-    flex: 0 0 auto;
-    position: relative;
-    display: flex;
-    justify-content: center;
+	flex: 0 0 auto;
+	position: relative;
+	display: flex;
+	justify-content: center;
 }
 
-.idElement {
-    position: absolute;
-    font-size: 3em;
-    /* line-height: 2em; */
-    text-transform: uppercase;
-    bottom: 100%;
-}
 
-/* ============================================================================================= */
+#mecchi_computer_widget .idElement {
+	position: absolute;
+	font-size: 3em !important;
+	text-transform: uppercase;
+	bottom: 100%;
+}
 
 @keyframes timePeriod_appearing {
 	0% {
@@ -457,35 +458,35 @@
 }
 
 .timePeriod_description_container {
-    overflow: auto;
+	overflow: auto;
 }
 
 #timePeriod_container > #timePeriod_choices {
-    flex-direction: row;
-    flex-grow: 0;
-    justify-content: space-evenly;
-    border-bottom: 1px solid;
+	flex-direction: row;
+	flex-grow: 0;
+	justify-content: space-evenly;
+	border-bottom: 1px solid;
 }
 
 #timePeriod_container {
-    flex-direction: column;
+	flex-direction: column;
 }
 
 #timePeriod_container > * {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
 }
 
 .timePeriod_info_content {
-    display: flex;
-    flex: 1 0 auto;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    padding: 1em 0;
+	display: flex;
+	flex: 1 0 auto;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	padding: 1em 0;
 	opacity: 0;
 	
 	animation-duration: 0.3s;
@@ -508,78 +509,76 @@
 }
 
 .timePeriod_info_content > * {
-    display: flex;
-    flex: 1 1 auto;
+	display: flex;
+	flex: 1 1 auto;
 }
 
 #timePeriod_illustration {
-    flex-grow: 0;
+	flex-grow: 0;
 }
 
 #timePeriod_description_container {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    justify-content: center;
-    align-content: center;
-    padding: 0 5em;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	justify-content: center;
+	align-content: center;
+	padding: 0 5em;
 }
 
 #timePeriod_description_wrapper {
-    display: flex;
-    flex: 1 1 1em;
-    overflow: hidden;
-    flex-direction: column;
-    justify-content: center;
+	display: flex;
+	flex: 1 1 1em;
+	overflow: hidden;
+	flex-direction: column;
+	justify-content: center;
 }
 
 #timePeriod_description_content {
-    display: flex;
-    flex-direction: column;
-    flex: 0 1 auto;
-    overflow: auto;
+	display: flex;
+	flex-direction: column;
+	flex: 0 1 auto;
+	overflow: auto;
 }
 
 .timePeriod_animation_container {
-    margin-bottom: -1px;
-    border: 1px solid;
-    cursor: pointer;
+	margin-bottom: -1px;
+	border: 1px solid;
+	cursor: pointer;
 
-    transition-property: all;
-    transition-duration: 0.2s;
+	transition-property: all;
+	transition-duration: 0.2s;
 }
 
 .timePeriod_animation_container.timePeriod_active {
-    border-bottom-color: rgb(60, 60, 60);
+	border-bottom-color: rgb(60, 60, 60);
 }
 
 .timePeriod_animation_container:not(.timePeriod_active) {
-    border-color: transparent;
+	border-color: transparent;
 }
 
 .timePeriod_active > .timePeriod_animation_content {
-    opacity: 1;
+	opacity: 1;
 }
 
 .timePeriod_animation_content {
-    padding: 0.5em 1em;
-    opacity: 0.5;
+	padding: 0.5em 1em;
+	opacity: 0.5;
 }
 
-/* ============================================================================================= */
-
 #gallery_content {
-    flex: 1 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+	flex: 1 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
 }
 
 #gallery_container {
-    justify-content: flex-start;
-    padding: 0 2em;
-    overflow: auto;
-    max-height: 100%;
+	justify-content: flex-start;
+	padding: 0 2em;
+	overflow: auto;
+	max-height: 100%;
 }
 
 .gallery_image {
@@ -602,10 +601,6 @@
 	transform: scale(0.95);
 }
 
-/* ============================================================================================= */
-/* == RichText ================================================================================= */
-/* ============================================================================================= */
-
 .richText_anchor {
 	position: relative;
 	display: inline;
@@ -613,11 +608,6 @@
 	cursor: pointer;
 	text-decoration: underline;
 }
-
-
-/* ============================================================================================= */
-/* == Modal ==================================================================================== */
-/* ============================================================================================= */
 
 @keyframes modal_appearing {
 	0% {
@@ -773,11 +763,6 @@
 	overflow: auto;
 }
 
-
-/* ============================================================================================= */
-/* == HelpText ================================================================================= */
-/* ============================================================================================= */
-
 @keyframes helpText_appearing {
 	0% {
 		opacity: 0;
@@ -871,100 +856,90 @@
 }
 
 .helpText_container.helpText_position_left .helpText_content {
-    right: 100%;
+	right: 100%;
 }
 
 .helpText_body {
-    width: 20em;
+	width: 20em;
 }
 
 .helpText_term {
-    text-transform: uppercase;
-    font-weight: bold;
+	text-transform: uppercase;
+	font-weight: bold;
 }
 
 .helpText_term:before {
-    content: "<";
+	content: "[";
 }
 
 .helpText_term:after {
-    content: "> : ";
+	content: "] : ";
 }
-
-
-/* ============================================================================================= */
-/* == HelpText ================================================================================= */
-/* ============================================================================================= */
 
 .text_progressing {
 	pointer-events: none;
 }
 
-
-/* ============================================================================================= */
-/* == Dynamic Image ============================================================================ */
-/* ============================================================================================= */
-
 .dynamicImage_container {
-    flex: 1 1 1em;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+	flex: 1 1 1em;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
 
 .dynamicImage_wrapper {
-    position: relative;
-    display: flex;
-    flex: 0 1 auto;
-    justify-content: center;
-    max-height: 100%;
-    max-width: 100%;
+	position: relative;
+	display: flex;
+	flex: 0 1 auto;
+	justify-content: center;
+	max-height: 100%;
+	max-width: 100%;
 }
 
 .dynamicImage_image {
-    display: flex;
-    flex: 0 0 auto;
+	display: flex;
+	flex: 0 0 auto;
 }
 
 .modal_body .dynamicImage_container {
-    max-height: 100%;
-    max-width: 100%;
+	max-height: 100%;
+	max-width: 100%;
 }
 
 .dynamicImage_text_container {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
+	display: flex;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
 }
 
 .dynamicImage_text_content {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex: 0 0 auto;
-    overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex: 0 0 auto;
+	overflow: hidden;
 }
 
 .dynamicImage_text {
-    flex: 1 1 1em;
-    line-height: 1.5em;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 0px 0 4px rgb(0, 0, 0);
+	flex: 1 1 1em;
+	line-height: 1.5em;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 0 4px rgb(0, 0, 0);
 }
 
 .dynamicImage_text:before {
-    content: "[";
+	content: "[";
 }
 
 .dynamicImage_text:after {
-    content: "]";
+	content: "]";
 }
