@@ -1,4 +1,10 @@
 var importedImages = {
+	"others" : {
+		"fungi": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/others/fungi.png",
+		"stray": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/others/stray.png",
+		"oggi": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/others/angy.png",
+	},
+	
 	"choice": {
 		"background": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/choice_scene/background.png",
 	},
@@ -78,7 +84,7 @@ var importedImages = {
 			
 			"gallery": {
 				"image_00": {
-					"full":		"https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/characters/stray/gallery/image_01.png",
+					"full":		"https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/characters/stray/gallery/image_00.png",
 					"cropped":	"https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/characters/stray/gallery/image_00_cropped.png",
 				},
 				"image_01": {
@@ -182,7 +188,7 @@ var importedImages = {
 			
 			"gallery": {
 				"image_00": {
-					"full":		"https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/characters/butcher/gallery/image_01.png",
+					"full":		"https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/characters/butcher/gallery/image_00.png",
 					"cropped":	"https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/characters/butcher/gallery/image_00_cropped.png",
 				},
 				"image_01": {
