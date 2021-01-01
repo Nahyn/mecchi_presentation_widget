@@ -943,3 +943,105 @@ body.full-width-off #header {
 .dynamicImage_text:after {
 	content: "]";
 }
+
+
+#easterEgg_container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+}
+
+#easterEgg_content {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+
+
+@keyframes fungi {
+	0% {
+		right: 120%
+	}
+	40% {
+		right: 50%
+	}
+	60% {
+		right: 50%
+	}
+	100% {
+		right: -20%
+	}
+}
+
+#fungi_positionner {
+	position: absolute;
+	
+	bottom: 0;
+	animation-name: fungi;
+	animation-duration: 1.5s;
+}
+
+#fungi_container {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	
+	position: relative;
+	justify-content: center;
+}
+
+#fungi {
+	position: absolute;
+	bottom: 0;
+}
+
+
+
+
+@keyframes stray_positionner {
+	0% {
+		left: 120%;
+	}
+	100% {
+		left: -20%;
+	}
+}
+
+@keyframes stray_spin {
+	0% {
+		transform: rotate(90deg);
+	}
+	100% {
+		transform: rotate(-90deg);
+	}
+}
+
+#stray_positionner {
+	position: absolute;
+	
+	bottom: 50%;
+	animation-name: stray_positionner;
+	animation-duration: 2s;
+}
+
+#stray_container {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	
+	position: relative;
+	justify-content: center;
+	align-content: center;
+}
+
+#stray {
+	position: absolute;
+	max-height: 200px;
+	bottom: 50%;
+	animation-name: stray_spin;
+	animation-duration: 2s;
+}
