@@ -716,18 +716,22 @@ body.full-width-off #header {
 	min-height: 1em;
 }
 
-.modal_header {
+#mecchi_computer_widget .modal_header {
 	display: flex;
-	font-size: 1.5em;
-	line-height: 2em;
-	justify-content: space-between;
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 1;
+
+	font-size: 1.5em !important;
+	line-height: 2em !important;
 	height: 2em;
+	
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
 	
 	opacity: 0;
 	transition-property: opacity;
@@ -736,16 +740,12 @@ body.full-width-off #header {
 	text-shadow: 0px 0px 2px rgb(0, 0, 0);
 }
 
-.modal_content:hover > .modal_header {
+
+#mecchi_computer_widget .modal_content:hover > .modal_header {
 	opacity: 1;
 }
 
 .modal_title {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
 	text-align: center;
 }
 
