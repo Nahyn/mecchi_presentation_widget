@@ -3,6 +3,11 @@ var importedImages = {
 		"fungi": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/others/fungi.png",
 		"stray": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/others/stray.png",
 		"oggi": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/others/angy.png",
+		
+		"volume_on": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/others/volume_on.png",
+		"volume_off": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/others/volume_off.png",
+		"volume_background": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/others/volume_background.png",
+		"volume_foreground": "https://raw.githubusercontent.com/Nahyn/mecchi_presentation_widget/main/img/others/volume_foreground.png",
 	},
 	
 	"choice": {

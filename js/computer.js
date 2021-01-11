@@ -24,13 +24,12 @@ function initComputerScene() {
 			"relatedImportedImages": importedImages[tmpSceneId]
 		});
 		
-	window.addEventListener(ComputerScreen.EventTypes.APPEAR, function(event_) {
-		$(mainContainer).removeClass("locked");
-	});
-	window.addEventListener(ComputerScreen.EventTypes.DISAPPEAR, function(event_) {
-		$(mainContainer).addClass("locked");
-	});
-	
+		window.addEventListener(ComputerScreen.EventTypes.APPEAR, function(event_) {
+			unlockMainContainer();
+		});
+		window.addEventListener(ComputerScreen.EventTypes.DISAPPEAR, function(event_) {
+			lockMainContainer();
+		});
 
 		tmpScene.init = function() {
 			var self = this;
@@ -75,7 +74,7 @@ function initComputerScene() {
 						$("." + ComputerScreen.cssClasses.tab.active, computerMenu).removeClass(ComputerScreen.cssClasses.tab.active);
 						$(tmpTab).addClass(ComputerScreen.cssClasses.tab.active);
 					}
-				})
+				});
 				
 				computerMenu.append(tmpTab);
 			});
@@ -90,16 +89,15 @@ function initComputerScene() {
 			;
 			
 			exitButton.on("click", function(event_){
+				audioSystem.play(importedSounds.computer_power_off);
 				selectedSubject.hideScreen();
+				
+				unlockMainContainer();
+				
 				tmpScene.hide();
-			})
+			});
 			
 			selectedSubject.showScreen(0);
-			/*
-			computerContainer.on("click", function(){
-				selectedSubject.nextScreen();
-			});
-			*/
 		}
 		
 		sceneList.push(tmpScene);

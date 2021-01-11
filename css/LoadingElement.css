@@ -1,0 +1,90 @@
+@keyframes loadingAnimation {
+	0% {
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+	}
+	50% {
+	-ms-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	}
+	100%	 {
+	-ms-transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg);
+	}
+}
+
+.load-container {
+	display: flex;
+	flex: 1 0 auto;
+	flex-direction: column-reverse;
+}
+
+.load-container > * {
+	flex: 1 0 50%;
+}
+
+.load-overlay {
+	-webkit-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
+	-o-transition: all 1s ease-out;
+	transition: all 1s ease-out;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 0;
+	color: white;
+	text-align: center;
+	letter-spacing: 0em;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+}
+
+.load-container > .load-spinnerContainer {
+	justify-content: center;
+	display: flex;
+}
+
+.load-container > .load-messageContainer ~ .load-spinnerContainer .load-spinnerBorder {
+	align-self: flex-end;
+}
+
+.load-spinnerBorder {
+	max-width: 5em;
+	border: 0.2em solid rgba(255, 255, 255, 0.3);
+	border-radius: 50%;
+	border-left-color: white;
+	display: flex;
+	align-self: center;
+	flex: 1 1 5em;
+	flex-direction: column;
+	animation: loadingAnimation 1s linear 0s infinite;
+	justify-content: center;
+}
+
+.load-overlay .load-message {
+	text-align: center;
+	font-size: 1.5em;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+}
+
+.load-overlay p.load-message {
+	font-size: 1.5em;
+}
+
+.load-spinnerSize {
+	width: 100%;
+	padding-bottom: 100%;
+}
+
+.load-message {
+	margin: 0.3em;
+}

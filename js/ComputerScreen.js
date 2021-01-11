@@ -61,10 +61,11 @@ ComputerScreen.cssClasses.content = "computerScreen_content";
 
 ComputerScreen.cssClasses.tab = {};
 ComputerScreen.cssClasses.tab.exit = "computerScreen_tab_exit";
-ComputerScreen.cssClasses.tab.container = "computerScreen_tab_container";
+ComputerScreen.cssClasses.tab.container = "computerScreen_tab_container btn";
 ComputerScreen.cssClasses.tab.content = "computerScreen_tab_content";
 ComputerScreen.cssClasses.tab.text = "computerScreen_tab_text";
-ComputerScreen.cssClasses.tab.active = "computerScreen_tab_active";
+
+ComputerScreen.cssClasses.tab.active = "btn_active";
 
 
 ComputerScreen.prototype.tabElement;

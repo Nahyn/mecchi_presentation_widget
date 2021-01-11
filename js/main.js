@@ -5,11 +5,31 @@ var characterIds = ["stray", "butcher", "galiléo"];
 var timePeriodIds = ["baby", "teen", "present", "future"];
 
 var selectedSubject;
+var audioSystem;
 
 var mainContainer;
 var choiceContainer;
 var transitionContainer;
 var computerContainer;
+
+var mediaTypes = {
+	audio: "audio",
+	img: "img"
+}
+
+var lockCount = 0;
+function lockMainContainer() {
+	lockCount++;
+	$(mainContainer).addClass("locked");
+}
+
+function unlockMainContainer() {
+	lockCount--;
+	
+	if (lockCount <= 0) {
+		$(mainContainer).removeClass("locked");
+	}
+}
 
 function getRandom(min_, max_) {
 	var delta = max_ - min_;
@@ -151,12 +171,29 @@ characterIds.forEach(function(characterId_) {
 
 window.onload = function(event_) {
 	mainContainer = $("#mecchi_computer_widget")[0];
+	audioSystem = new AudioSystem();
+	
+	var mouseHoverSound;
+	$("body").on("mouseenter", ".btn", function(event_){
+		if($(event_.target).hasClass("btn_active") == false){
+			if(mouseHoverSound != undefined){
+				mouseHoverSound.pause();
+			}
+			mouseHoverSound = audioSystem.play(importedSounds.mouse_hover);
+		}
+	});
+	
+	$("body").on("click", ".btn", function(event_){
+		if($(event_.target).hasClass("btn_active") == false){
+			audioSystem.play(importedSounds.mouse_click);
+		}
+	});
 	
 	window.addEventListener(Scene.EventTypes.APPEAR, function(event_) {
-		$(mainContainer).removeClass("locked");
+		unlockMainContainer();
 	});
 	window.addEventListener(Scene.EventTypes.DISAPPEAR, function(event_) {
-		$(mainContainer).addClass("locked");
+		lockMainContainer();
 	});
 	
 	$("body").on("mouseenter", "." + RichText.cssClasses.helpAnchorClass, function(event_) {
@@ -217,8 +254,142 @@ window.onload = function(event_) {
 	initComputerScene();
 	
 	mainContainer.append(HelpText.container);
+	mainContainer.append(audioSystem.volumeControlContainer);
 	
-	nextScene();
+	var mediaToLoad = [];
+	
+	var getMediaUrls = function(list_, mediaType_) {
+		var listKeys = Object.keys(list_);
+		
+		listKeys.forEach(function(tmpKey_) {
+			var value = list_[tmpKey_];
+			if(typeof(value) == "string") {
+				var urlAlreadyListed = mediaToLoad.some(function(mediaParams_){
+					return mediaParams_.url === value;
+				});
+				
+				if(urlAlreadyListed == false){
+					mediaToLoad.push({
+						"url": value,
+						"type": mediaType_
+					});
+				}
+			} else {
+				getMediaUrls(value, mediaType_);
+			}
+		});
+	}
+	
+	var loadedMediaCount = 0;
+	
+	mediaToLoad.push({ "type": mediaTypes.audio, "url": importedSounds.mouse_click });
+	mediaToLoad.push({ "type": mediaTypes.audio, "url": importedSounds.mouse_hover });
+	
+	mediaToLoad.push({ "type": mediaTypes.img, "url": importedImages.choice.background });
+	
+	characterIds.forEach(function(characterId_) {
+		mediaToLoad.push({ "type": mediaTypes.img, "url": importedImages.characters[characterId_].disk });
+		mediaToLoad.push({ "type": mediaTypes.img, "url": importedImages.characters[characterId_].disk_big });
+		mediaToLoad.push({ "type": mediaTypes.img, "url": importedImages.characters[characterId_].disk_background });
+		mediaToLoad.push({ "type": mediaTypes.img, "url": importedImages.characters[characterId_].disk_background_shadow });
+		mediaToLoad.push({ "type": mediaTypes.img, "url": importedImages.characters[characterId_].disk_overlay });
+	});
+	
+	var minimumLoadedMediaCount = mediaToLoad.length;
+	
+	getMediaUrls(importedImages, mediaTypes.img);
+	getMediaUrls(importedSounds, mediaTypes.audio);
+	
+	var totalMediaToLoad = mediaToLoad.length;
+	
+	/* ========================================================================================= */
+	/* == Assets loading ======================================================================= */
+	/* ========================================================================================= */
+	
+	var loadingElement;
+	var loadingCompletedButton = $("<p>")
+		.addClass("btn")
+		.html("Start")
+		.on("click", function(event_){
+			lockMainContainer();
+			setTimeout(function(){
+				$(loadingElement).remove();
+				nextScene();
+			}, 0)
+		})
+	;
+	
+	var refreshLoading = function() {
+		if(loadedMediaCount < minimumLoadedMediaCount){
+			var progress = "" + loadedMediaCount;
+			
+			if (minimumLoadedMediaCount > 10) {
+				if (loadedMediaCount < 10) {
+					progress = "0" + progress;
+				}
+				
+				if (minimumLoadedMediaCount > 100) {
+					if (loadedMediaCount < 100) {
+						progress = "0" + progress;
+					}
+				}
+			}
+			progress = progress + " / " + minimumLoadedMediaCount;
+			
+			loadingElement = LoadingElement.set(
+				[
+					"Loading, please wait", 
+					progress
+				],
+				mainContainer
+			);
+		}
+	};
+	
+	refreshLoading();
+	var onLoaded = function(event_) {
+		loadedMediaCount++;
+		refreshLoading();
+		
+		if(loadedMediaCount >= minimumLoadedMediaCount) {
+			var completedButtonContainer = $("<div>")
+				.addClass("loadingCompletedButton-container")
+			;
+			
+			var completedButtonContent = $("<div>")
+				.addClass("loadingCompletedButton-content")
+				.appendTo(completedButtonContainer)
+			;
+			
+			loadingCompletedButton.appendTo(completedButtonContent);
+			
+			$(loadingElement)
+				.empty()
+				.append(completedButtonContainer)
+			;
+		}
+	}
+	
+	var processImg = function(url_) {
+		var tmpImage = new Image();
+		
+		tmpImage.onload = onLoaded;
+		tmpImage.onerror = onLoaded;
+		
+		tmpImage.src = url_;
+	}
+	var processAudio = function(url_) {
+		var tmpAudio = new Audio(url_);
+		tmpAudio.addEventListener("canplaythrough", onLoaded);
+	}
+	
+	mediaToLoad.forEach(function(mediaParameters_) {
+		if(mediaParameters_.type == mediaTypes.img){
+			processImg(mediaParameters_.url);
+		} else {
+			processAudio(mediaParameters_.url);
+		}
+	});
 }
 
 addEventTypes(window, [

@@ -27,11 +27,11 @@ var codes = [
 				;
 				
 				fungiPositionner.one("animationstart", function(event_) {
-					overContainer.addClass("locked");
+					lockMainContainer();
 				});
 				
 				fungiPositionner.one("animationend", function(event_) {
-					overContainer.removeClass("locked");
+					unlockMainContainer();
 					
 					easterEggContainer.remove();	
 					easterEggContent.empty();
@@ -68,13 +68,13 @@ var codes = [
 			
 			tmpImg.onload = function(){
 				strayPositionner.on("animationstart", function(event_) {
-					overContainer.addClass("locked");
+					lockMainContainer();
 				});
 				
 
 				strayPositionner.on("animationend", function(event_) {
 					if(event_.originalEvent.animationName == "stray_positionner"){
-						overContainer.removeClass("locked");
+						unlockMainContainer();
 						
 						easterEggContainer.remove();	
 						easterEggContent.empty();
@@ -103,8 +103,6 @@ $(window).on("load", function(){
 	var currentString = "";
 	var checkForEggs = function(){
 		var possibleCodes = [];
-		console.log(currentString);
-		
 		codes.forEach(function(tmpCode_) {
 			if (tmpCode_.text.indexOf(currentString) == 0) {
 				possibleCodes.push(tmpCode_);
@@ -117,6 +115,7 @@ $(window).on("load", function(){
 		} else {
 			possibleCodes.forEach(function(tmpCode_) {
 				if (tmpCode_.text == currentString) {
+					audioSystem.play(importedSounds.easter_egg_discovery);
 					tmpCode_.callback();
 					currentString = "";
 				}

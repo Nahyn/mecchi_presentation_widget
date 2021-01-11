@@ -19,6 +19,10 @@ function initTransitionScene() {
 			"relatedImportedImages": importedImages[tmpSceneId]
 		});
 		
+		tmpScene.addEventListener(Scene.EventTypes.DISAPPEAR, function() {
+			audioSystem.play(importedSounds.computer_power_on);
+		});
+		
 		tmpScene.addEventListener("transitionend", function(event_){
 			tmpScene.hide();
 		});

@@ -59,10 +59,16 @@ function initChoiceScene() {
 					self.hide();
 				});
 				
+				tmpContent.on("mouseenter", function(event_) {
+					audioSystem.play(importedSounds.mouse_hover);
+				});
+				
 				tmpContent.on("click", function(event_) {
+					audioSystem.play(importedSounds.mouse_click);
 					selectedSubject = tmpCharacter;
 					$(tmpDiskElement).addClass("selected");
-					$(tmpScene.container).addClass("locked");
+					
+					lockMainContainer();
 				});
 			});
 		}

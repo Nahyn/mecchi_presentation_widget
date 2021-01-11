@@ -323,6 +323,7 @@ Character.prototype.initialize = function() {
 				
 				$(animationContainer).on("mouseenter", function(event_){
 					if($(event_.currentTarget).hasClass(activeTimePeriodCssClass) == false) {
+						audioSystem.play(importedSounds.mouse_hover);
 						
 						timePeriodAnimations.forEach(function(timePeriodAnimation_) {
 							timePeriodAnimation_.pause();
@@ -398,7 +399,12 @@ Character.prototype.initialize = function() {
 				tmpImage.show(galleryImageContainer);
 				dynamicImages.push(tmpImage);
 				
+				$(tmpImage.imageElement).on("mouseenter", function(event_) {
+					audioSystem.play(importedSounds.mouse_hover);
+				});
+				
 				$(tmpImage.imageElement).on("click", function(event_) {
+					audioSystem.play(importedSounds.mouse_click);
 					var tmpModal = tmpComputerScreen.createModal();
 					
 					var modalBody = $(tmpModal.element).find("." + Modal.cssClasses.body)[0];
